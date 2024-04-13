@@ -1,9 +1,5 @@
 package com.example.domain;
 
-
-import org.hibernate.annotations.Entity;
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
 
 @Entity
@@ -16,5 +12,4 @@ public class Task {
     private String description;
     @Enumerated(EnumType.ORDINAL)
     private Status status;
-
 }

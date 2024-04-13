@@ -2,23 +2,33 @@ package com.example.service;
 
 import com.example.domain.Task;
 import com.example.repository.TaskRepository;
-import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Data
+@RequiredArgsConstructor
 @Service
 public class TaskService {
-    TaskRepository taskRepository;
+   private final TaskRepository taskRepository;
+    ModelMapper mapper;
 
-    public TaskService(TaskRepository taskRepository) {
-        this.taskRepository = taskRepository;
+@Transactional
+    public List<Task> getAll(){
+        return taskRepository.getAllTasks().stream()
+                .map(t -> mapper.map(t, Task.class))
+                .collect(Collectors.toList());
     }
 
-    public List<Task> getAll(){
-        System.out.println(taskRepository.getAllTasks());
-        return taskRepository.getAllTasks();
-
+    @Transactional
+    public void saveTask(Task task){
+    taskRepository.saveTask(mapper.map(task, Task.class));
+    }
+    @Transactional
+    public Task getTaskById(Long id){
+   return mapper.map(taskRepository.getById(id),Task.class);
     }
 }
