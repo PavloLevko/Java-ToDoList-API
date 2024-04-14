@@ -18,7 +18,7 @@ public class TaskRepository {
 
     public List<Task> getAllTasks(){
         Session session = sessionFactory.getCurrentSession();
-        Query<Task> allFromTask = session.createQuery("FROM Task", Task.class);
+        Query<Task> allFromTask = session.createQuery("SELECT t.id, t.description, t.status, t.dateTime FROM Task t", Task.class);
         return allFromTask.getResultList();
     }
     public void saveTask(Task task){

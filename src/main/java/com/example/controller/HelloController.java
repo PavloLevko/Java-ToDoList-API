@@ -1,7 +1,7 @@
 package com.example.controller;
 import com.example.domain.Task;
+import com.example.dto.TaskDto;
 import com.example.service.TaskService;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,7 @@ import java.util.List;
 public class HelloController {
   private final   TaskService taskService;
     @GetMapping
-    public List<Task> hello(){
+    public List<TaskDto> hello(){
         System.out.println("Server start");
         System.out.println(taskService.getAll());
         return taskService.getAll();
