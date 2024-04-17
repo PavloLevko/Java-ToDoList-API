@@ -4,13 +4,15 @@ import com.example.dto.TaskDto;
 import com.example.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
-@Controller
+@RestController
 @RequestMapping("/tasks")
 public class HelloController {
   private final   TaskService taskService;
@@ -27,8 +29,8 @@ public class HelloController {
        taskService.saveTask(task);
     }
     @GetMapping(value = "/task/{taskId}")
-    public Task getTaskById (@PathVariable Long taskId){
-        return taskService.getTaskById(taskId);
-    }
+    public TaskDto getTaskById (@PathVariable Long taskId) {
+      return taskService.getTaskById(taskId);
+        }
 
 }

@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 
 
@@ -14,11 +15,11 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Repository
 public class TaskRepository {
-  private final  SessionFactory sessionFactory;
+  private final SessionFactory sessionFactory;
 
     public List<Task> getAllTasks(){
         Session session = sessionFactory.getCurrentSession();
-        Query<Task> allFromTask = session.createQuery("SELECT t.id, t.description, t.status, t.dateTime FROM Task t", Task.class);
+        Query<Task> allFromTask = session.createQuery(" FROM Task", Task.class);
         return allFromTask.getResultList();
     }
     public void saveTask(Task task){

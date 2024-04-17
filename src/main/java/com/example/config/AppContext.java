@@ -19,7 +19,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class AppContext {
 @Bean
-LocalSessionFactoryBean sessionFactoryBean(){
+LocalSessionFactoryBean sessionFactory(){
     LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
     sessionFactory.setPackagesToScan(new String[]{"com.example.domain"});
     sessionFactory.setHibernateProperties(hibernateProperties());
@@ -46,7 +46,7 @@ LocalSessionFactoryBean sessionFactoryBean(){
     @Bean
     public HibernateTransactionManager getTransactionManager() {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-        transactionManager.setSessionFactory(sessionFactoryBean().getObject());
+        transactionManager.setSessionFactory(sessionFactory().getObject());
         return transactionManager;
     }
     @Bean

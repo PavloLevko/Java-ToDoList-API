@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -30,7 +31,7 @@ public class TaskService {
     }
 
     @Transactional
-    public Task getTaskById(Long id) {
-        return mapper.map(taskRepository.getById(id), Task.class);
+    public TaskDto getTaskById(Long id) {
+        return mapper.map(taskRepository.getById(id),TaskDto.class);
     }
 }
