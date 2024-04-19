@@ -34,4 +34,8 @@ public class TaskService {
     public TaskDto getTaskById(Long id) {
         return mapper.map(taskRepository.getById(id),TaskDto.class);
     }
+    @Transactional
+    public void deleteById (Long id){
+        taskRepository.delete(id);
+    }
 }

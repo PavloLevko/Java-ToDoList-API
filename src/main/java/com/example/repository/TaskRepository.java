@@ -30,4 +30,12 @@ public class TaskRepository {
         Session session = sessionFactory.getCurrentSession();
        return Optional.ofNullable(session.get(Task.class, id));
     }
+    public  void delete (Long id){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("SELECT t FROM Task t WHERE id = :id");
+        query.setParameter("id", id);
+        Object task = query.uniqueResult();
+        session.delete(task);
+
+    }
 }
