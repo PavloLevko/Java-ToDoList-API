@@ -18,6 +18,7 @@ public class TaskService {
     private final TaskRepository taskRepository;
     private final ModelMapper mapper;
 
+
     @Transactional
     public List<TaskDto> getAll() {
         return taskRepository.getAllTasks().stream().
